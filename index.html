@@ -40,9 +40,9 @@
                     <button class="key function-key" id="memory-store" onclick="calculator.memoryStore()">MS</button>
                 </div>
 
-                <!-- Row 3: Scientific Functions -->
+            <!-- Row 3: Scientific Functions -->
                 <div class="key-row">
-                    <button class="key function-key" onclick="calculator.toggleScientific()">Sci</button>
+                    <button class="key function-key premium-key" onclick="togglePremiumMode()">💎</button>
                     <button class="key function-key" onclick="calculator.calculate('sin')">sin</button>
                     <button class="key function-key" onclick="calculator.calculate('cos')">cos</button>
                     <button class="key function-key" onclick="calculator.calculate('tan')">tan</button>
@@ -94,6 +94,22 @@
                     <button class="key function-key" onclick="calculator.calculate('abs')">|x|</button>
                     <button class="key function-key" onclick="calculator.calculate('pi')">π</button>
                     <button class="key function-key" onclick="calculator.calculate('e')">e</button>
+                </div>
+
+                <!-- Premium Features Row (hidden by default) -->
+                <div class="key-row premium-row" id="premium-row" style="display: none;">
+                    <button class="key function-key premium-key" onclick="openConstants()">Constants</button>
+                    <button class="key function-key premium-key" onclick="openUnitConverter()">Units</button>
+                    <button class="key function-key premium-key" onclick="openFinancial()">Finance</button>
+                    <button class="key function-key premium-key" onclick="openStatistics()">Stats</button>
+                </div>
+
+                <!-- History and Advanced Features Row -->
+                <div class="key-row history-row" id="history-row" style="display: none;">
+                    <button class="key function-key" onclick="showHistory()">History</button>
+                    <button class="key function-key" onclick="clearHistory()">Clear Hist</button>
+                    <button class="key function-key" onclick="copyResult()">Copy</button>
+                    <button class="key function-key" onclick="pasteResult()">Paste</button>
                 </div>
             </div>
         </div>
