@@ -70,7 +70,7 @@ jobs:
         ./gradlew assembleDebug
         
     - name: Upload APK artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: calculator-debug.apk
         path: android/app/build/outputs/apk/debug/app-debug.apk
@@ -93,7 +93,7 @@ jobs:
         
     - name: Upload Release APK artifact
       if: env.ANDROID_KEYSTORE_BASE64 != null
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: calculator-release.apk
         path: android/app/build/outputs/apk/release/calculator-release.apk
@@ -144,7 +144,7 @@ jobs:
         
     - name: Upload AAB artifact
       if: env.ANDROID_KEYSTORE_BASE64 != null
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: calculator-release.aab
         path: android/app/build/outputs/bundle/release/app-release.aab
