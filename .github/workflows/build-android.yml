@@ -25,7 +25,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm install -g @capacitor/cli
-        npm install
+        npm ci --production=false
         
     - name: Install Android SDK
       uses: android-actions/setup-android@v3
@@ -47,7 +47,9 @@ jobs:
     - name: Cache npm dependencies
       uses: actions/cache@v3
       with:
-        path: node_modules
+        path: |
+          node_modules
+          ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
@@ -98,7 +100,7 @@ jobs:
         name: calculator-release.apk
         path: android/app/build/outputs/apk/release/calculator-release.apk
 
-  build-aab:
+  build-release-apk:
     runs-on: ubuntu-latest
     needs: build-android
     
@@ -115,7 +117,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm install -g @capacitor/cli
-        npm install
+        npm ci --production=false
         
     - name: Install Android SDK
       uses: android-actions/setup-android@v3
@@ -124,12 +126,32 @@ jobs:
         build-tools: 33.0.2
         ndk: 25.2.9519653
         
+    - name: Cache Gradle dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+          
+    - name: Cache npm dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          node_modules
+          ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+        
     - name: Setup Capacitor Android
       run: |
         npx cap add android
         npx cap sync android
         
-    - name: Build Android App Bundle (AAB)
+    - name: Build Release APK
       env:
         ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
@@ -139,12 +161,14 @@ jobs:
         if [ -n "$ANDROID_KEYSTORE_BASE64" ]; then
           echo $ANDROID_KEYSTORE_BASE64 | base64 -d > android/app/release.keystore
           cd android
-          ./gradlew bundleRelease
+          ./gradlew assembleRelease
+          cd ..
+          mv android/app/build/outputs/apk/release/app-release.apk android/app/build/outputs/apk/release/calculator-release.apk
         fi
         
-    - name: Upload AAB artifact
+    - name: Upload Release APK artifact
       if: env.ANDROID_KEYSTORE_BASE64 != null
       uses: actions/upload-artifact@v4
       with:
-        name: calculator-release.aab
-        path: android/app/build/outputs/bundle/release/app-release.aab
+        name: calculator-release.apk
+        path: android/app/build/outputs/apk/release/calculator-release.apk
