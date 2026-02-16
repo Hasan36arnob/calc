@@ -1,0 +1,23 @@
+This is a placeholder for app icons.
+
+To create proper app icons for your calculator:
+
+1. Create a 512x512 PNG icon with your app's design
+2. Use an icon generator tool to create all required sizes:
+   - 72x72, 96x96, 128x128, 144x144, 152x152, 192x192, 384x384, 512x512
+3. Name them according to the manifest.json specification:
+   - icon-72x72.png, icon-96x96.png, etc.
+4. Place them in this icons/ directory
+
+For a calculator app, consider using:
+- A calculator icon with modern design
+- Clean, minimalistic style
+- High contrast for visibility
+- Your brand colors
+
+You can use online tools like:
+- https://appicon.co/
+- https://makeappicon.com/
+- https://favicon.io/
+
+Or create them manually using graphic design software.

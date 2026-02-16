@@ -1,0 +1,362 @@
+/* CSS Variables for Theme Management */
+:root {
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --display-bg: #000;
+    --text-color: #ffffff;
+    --key-bg: #3d3d3d;
+    --key-hover: #4d4d4d;
+    --key-active: #5d5d5d;
+    --number-key-bg: #3d3d3d;
+    --operator-key-bg: #ff9500;
+    --operator-key-hover: #ffad33;
+    --equals-key-bg: #ff9500;
+    --function-key-bg: #5a5a5a;
+    --function-key-hover: #6a6a6a;
+    --border-radius: 16px;
+    --key-border-radius: 12px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme */
+.light-theme {
+    --bg-color: #f5f5f7;
+    --card-bg: #ffffff;
+    --display-bg: #000000;
+    --text-color: #000000;
+    --key-bg: #e5e5e7;
+    --key-hover: #d1d1d6;
+    --key-active: #c7c7cc;
+    --number-key-bg: #e5e5e7;
+    --operator-key-bg: #ff9500;
+    --operator-key-hover: #ffad33;
+    --equals-key-bg: #ff9500;
+    --function-key-bg: #d1d1d6;
+    --function-key-hover: #c7c7cc;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Theme (Default) */
+.dark-theme {
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --display-bg: #000;
+    --text-color: #ffffff;
+    --key-bg: #3d3d3d;
+    --key-hover: #4d4d4d;
+    --key-active: #5d5d5d;
+    --number-key-bg: #3d3d3d;
+    --operator-key-bg: #ff9500;
+    --operator-key-hover: #ffad33;
+    --equals-key-bg: #ff9500;
+    --function-key-bg: #5a5a5a;
+    --function-key-hover: #6a6a6a;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* High Contrast Theme */
+.high-contrast-theme {
+    --bg-color: #000000;
+    --card-bg: #1a1a1a;
+    --display-bg: #ffffff;
+    --text-color: #ffffff;
+    --key-bg: #333333;
+    --key-hover: #444444;
+    --key-active: #555555;
+    --number-key-bg: #333333;
+    --operator-key-bg: #ff0000;
+    --operator-key-hover: #ff3333;
+    --equals-key-bg: #00ff00;
+    --function-key-bg: #555555;
+    --function-key-hover: #666666;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: var(--transition);
+}
+
+.app-container {
+    width: 100%;
+    max-width: 360px;
+    height: 100%;
+    max-height: 700px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Display Styles */
+.display-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.history-display {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    min-height: 20px;
+    text-align: right;
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.main-display {
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--text-color);
+    text-align: right;
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+    line-height: 1.2;
+}
+
+/* Keypad Styles */
+.keypad {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 2;
+}
+
+.key-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.key {
+    flex: 1;
+    height: 60px;
+    border: none;
+    border-radius: var(--key-border-radius);
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+    position: relative;
+    outline: none;
+}
+
+.key:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Key Type Styles */
+.number-key {
+    background-color: var(--number-key-bg);
+    color: var(--text-color);
+}
+
+.number-key:hover {
+    background-color: var(--key-hover);
+}
+
+.function-key {
+    background-color: var(--function-key-bg);
+    color: var(--text-color);
+}
+
+.function-key:hover {
+    background-color: var(--function-key-hover);
+}
+
+.operator-key {
+    background-color: var(--operator-key-bg);
+    color: white;
+    font-weight: 600;
+}
+
+.operator-key:hover {
+    background-color: var(--operator-key-hover);
+}
+
+.equals-key {
+    background-color: var(--equals-key-bg);
+    color: white;
+    font-weight: 600;
+    flex: 2;
+}
+
+.equals-key:hover {
+    background-color: var(--operator-key-hover);
+}
+
+.zero-key {
+    flex: 2;
+}
+
+/* Accessibility Enhancements */
+.key:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .calculator {
+        padding: 16px;
+    }
+    
+    .key {
+        height: 50px;
+        font-size: 18px;
+    }
+    
+    .main-display {
+        font-size: 40px;
+    }
+    
+    .history-display {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    .key {
+        height: 45px;
+        font-size: 16px;
+    }
+    
+    .main-display {
+        font-size: 36px;
+    }
+    
+    .calculator {
+        padding: 12px;
+    }
+}
+
+/* Animation for theme switching */
+body.transitioning * {
+    transition: all 0.3s ease-in-out !important;
+}
+
+/* Error state styling */
+.error {
+    color: #ff4444 !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Memory indicator */
+.memory-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    display: none;
+}
+
+.calculator.has-memory .memory-indicator {
+    display: block;
+}
+
+/* Scientific mode indicator */
+.scientific-indicator {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    display: none;
+}
+
+.calculator.scientific-mode .scientific-indicator {
+    display: block;
+}
+
+/* Haptic feedback simulation */
+.key:active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--key-border-radius);
+    pointer-events: none;
+}
+
+/* Custom scrollbar for history display */
+.history-display::-webkit-scrollbar {
+    width: 4px;
+}
+
+.history-display::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.history-display::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+/* Print styles for accessibility */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .keypad {
+        display: none;
+    }
+}

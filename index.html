@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Professional Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="description" content="A professional calculator app with advanced features and beautiful design">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Calculator">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <div class="app-container">
+        <div class="calculator">
+            <!-- Display Section -->
+            <div class="display-container">
+                <div class="history-display" id="history">0</div>
+                <div class="main-display" id="display">0</div>
+            </div>
+
+            <!-- Keypad Section -->
+            <div class="keypad">
+                <!-- Row 1: Clear, Delete, Memory, Theme -->
+                <div class="key-row">
+                    <button class="key function-key" id="clear" onclick="calculator.clear()">AC</button>
+                    <button class="key function-key" id="delete" onclick="calculator.delete()">⌫</button>
+                    <button class="key function-key" id="memory-clear" onclick="calculator.memoryClear()">MC</button>
+                    <button class="key function-key" id="theme-toggle" onclick="toggleTheme()">🌓</button>
+                </div>
+
+                <!-- Row 2: Memory Operations -->
+                <div class="key-row">
+                    <button class="key function-key" id="memory-recall" onclick="calculator.memoryRecall()">MR</button>
+                    <button class="key function-key" id="memory-plus" onclick="calculator.memoryPlus()">M+</button>
+                    <button class="key function-key" id="memory-minus" onclick="calculator.memoryMinus()">M-</button>
+                    <button class="key function-key" id="memory-store" onclick="calculator.memoryStore()">MS</button>
+                </div>
+
+                <!-- Row 3: Scientific Functions -->
+                <div class="key-row">
+                    <button class="key function-key" onclick="calculator.toggleScientific()">Sci</button>
+                    <button class="key function-key" onclick="calculator.calculate('sin')">sin</button>
+                    <button class="key function-key" onclick="calculator.calculate('cos')">cos</button>
+                    <button class="key function-key" onclick="calculator.calculate('tan')">tan</button>
+                </div>
+
+                <!-- Row 4: Numbers and Operations -->
+                <div class="key-row">
+                    <button class="key number-key" onclick="calculator.inputNumber('7')">7</button>
+                    <button class="key number-key" onclick="calculator.inputNumber('8')">8</button>
+                    <button class="key number-key" onclick="calculator.inputNumber('9')">9</button>
+                    <button class="key operator-key" onclick="calculator.inputOperator('/')">÷</button>
+                </div>
+
+                <!-- Row 5: Numbers and Operations -->
+                <div class="key-row">
+                    <button class="key number-key" onclick="calculator.inputNumber('4')">4</button>
+                    <button class="key number-key" onclick="calculator.inputNumber('5')">5</button>
+                    <button class="key number-key" onclick="calculator.inputNumber('6')">6</button>
+                    <button class="key operator-key" onclick="calculator.inputOperator('*')">×</button>
+                </div>
+
+                <!-- Row 6: Numbers and Operations -->
+                <div class="key-row">
+                    <button class="key number-key" onclick="calculator.inputNumber('1')">1</button>
+                    <button class="key number-key" onclick="calculator.inputNumber('2')">2</button>
+                    <button class="key number-key" onclick="calculator.inputNumber('3')">3</button>
+                    <button class="key operator-key" onclick="calculator.inputOperator('-')">−</button>
+                </div>
+
+                <!-- Row 7: Zero, Decimal, Equals, Addition -->
+                <div class="key-row">
+                    <button class="key number-key zero-key" onclick="calculator.inputNumber('0')">0</button>
+                    <button class="key number-key" onclick="calculator.inputDecimal()">.</button>
+                    <button class="key equals-key" onclick="calculator.calculateResult()">=</button>
+                    <button class="key operator-key" onclick="calculator.inputOperator('+')">+</button>
+                </div>
+
+                <!-- Row 8: Advanced Functions (hidden by default) -->
+                <div class="key-row scientific-row" id="scientific-row" style="display: none;">
+                    <button class="key function-key" onclick="calculator.calculate('sqrt')">√</button>
+                    <button class="key function-key" onclick="calculator.calculate('pow')">x²</button>
+                    <button class="key function-key" onclick="calculator.calculate('log')">log</button>
+                    <button class="key function-key" onclick="calculator.calculate('ln')">ln</button>
+                </div>
+
+                <!-- Row 9: More Advanced Functions (hidden by default) -->
+                <div class="key-row scientific-row" id="scientific-row-2" style="display: none;">
+                    <button class="key function-key" onclick="calculator.calculate('factorial')">x!</button>
+                    <button class="key function-key" onclick="calculator.calculate('abs')">|x|</button>
+                    <button class="key function-key" onclick="calculator.calculate('pi')">π</button>
+                    <button class="key function-key" onclick="calculator.calculate('e')">e</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

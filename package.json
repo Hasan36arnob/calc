@@ -1,0 +1,24 @@
+{
+  "name": "professional-calculator",
+  "version": "1.0.0",
+  "description": "A professional calculator mobile app built with HTML, CSS, and JavaScript using Capacitor",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Build completed successfully'",
+    "start": "echo 'App ready to run with Capacitor'"
+  },
+  "keywords": [
+    "calculator",
+    "mobile-app",
+    "capacitor",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/core": "^5.0.0"
+  }
+}
