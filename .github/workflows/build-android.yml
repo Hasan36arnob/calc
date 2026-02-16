@@ -25,7 +25,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm install -g @capacitor/cli
-        npm ci --production=false
+        npm ci
         
     - name: Install Android SDK
       uses: android-actions/setup-android@v3
@@ -71,9 +71,11 @@ jobs:
         cp manifest.json www/
         cp -r icons www/
         
-        if [ ! -d "android" ]; then
-          npx cap add android
-        fi
+        # Remove existing android directory if it exists
+        rm -rf android
+        
+        # Add Android platform
+        npx cap add android
         npx cap sync android
         
     - name: Build Android APK
@@ -127,7 +129,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm install -g @capacitor/cli
-        npm ci --production=false
+        npm ci
         
     - name: Install Android SDK
       uses: android-actions/setup-android@v3
@@ -166,9 +168,11 @@ jobs:
         cp manifest.json www/
         cp -r icons www/
         
-        if [ ! -d "android" ]; then
-          npx cap add android
-        fi
+        # Remove existing android directory if it exists
+        rm -rf android
+        
+        # Add Android platform
+        npx cap add android
         npx cap sync android
         
     - name: Build Release APK
