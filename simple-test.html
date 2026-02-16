@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Simple Calculator Test</h1>
+    
+    <div id="test-output"></div>
+    
+    <button onclick="testCalculator()">Test Calculator</button>
+    <button onclick="testButtons()">Test Button Functions</button>
+    
+    <script src="app.js"></script>
+    <script>
+        function testCalculator() {
+            const output = document.getElementById('test-output');
+            let result = '<h3>Calculator Test Results:</h3>';
+            
+            try {
+                // Test if calculator is initialized
+                if (typeof calculator !== 'undefined' && calculator !== null) {
+                    result += '<div class="test-result success">✅ Calculator object exists</div>';
+                    
+                    // Test if display elements are accessible
+                    if (calculator.display && calculator.historyDisplay) {
+                        result += '<div class="test-result success">✅ Display elements found</div>';
+                    } else {
+                        result += '<div class="test-result error">❌ Display elements not found</div>';
+                    }
+                    
+                    // Test basic functionality
+                    if (typeof calculator.inputNumber === 'function') {
+                        result += '<div class="test-result success">✅ inputNumber function exists</div>';
+                    } else {
+                        result += '<div class="test-result error">❌ inputNumber function missing</div>';
+                    }
+                    
+                    if (typeof calculator.calculateResult === 'function') {
+                        result += '<div class="test-result success">✅ calculateResult function exists</div>';
+                    } else {
+                        result += '<div class="test-result error">❌ calculateResult function missing</div>';
+                    }
+                    
+                } else {
+                    result += '<div class="test-result error">❌ Calculator object not found</div>';
+                }
+                
+            } catch (error) {
+                result += '<div class="test-result error">❌ Error: ' + error.message + '</div>';
+            }
+            
+            output.innerHTML = result;
+        }
+        
+        function testButtons() {
+            const output = document.getElementById('test-output');
+            let result = '<h3>Button Test Results:</h3>';
+            
+            try {
+                // Test if buttons exist
+                const buttons = document.querySelectorAll('.key');
+                if (buttons.length > 0) {
+                    result += '<div class="test-result success">✅ Found ' + buttons.length + ' buttons</div>';
+                    
+                    // Test a few specific buttons
+                    const numberButton = document.querySelector('.number-key');
+                    if (numberButton) {
+                        result += '<div class="test-result success">✅ Number buttons found</div>';
+                    }
+                    
+                    const operatorButton = document.querySelector('.operator-key');
+                    if (operatorButton) {
+                        result += '<div class="test-result success">✅ Operator buttons found</div>';
+                    }
+                    
+                    const equalsButton = document.querySelector('.equals-key');
+                    if (equalsButton) {
+                        result += '<div class="test-result success">✅ Equals button found</div>';
+                    }
+                    
+                } else {
+                    result += '<div class="test-result error">❌ No buttons found</div>';
+                }
+                
+            } catch (error) {
+                result += '<div class="test-result error">❌ Error: ' + error.message + '</div>';
+            }
+            
+            output.innerHTML = result;
+        }
+        
+        // Run tests automatically when page loads
+        window.onload = function() {
+            testCalculator();
+        };
+    </script>
+</body>
+</html>

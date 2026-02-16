@@ -60,8 +60,8 @@ class CalculatorState {
 class ProfessionalCalculator {
     constructor() {
         this.state = new CalculatorState();
-        this.display = document.getElementById('display');
-        this.historyDisplay = document.getElementById('history');
+        this.display = null;
+        this.historyDisplay = null;
         this.scientificMode = false;
         
         // Bind methods to maintain context
@@ -69,6 +69,28 @@ class ProfessionalCalculator {
     }
     
     init() {
+        // Wait for DOM to be fully loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.setup());
+        } else {
+            this.setup();
+        }
+    }
+    
+    setup() {
+        // Initialize DOM elements
+        this.display = document.getElementById('display');
+        this.historyDisplay = document.getElementById('history');
+        
+        console.log('Calculator setup called');
+        console.log('Display element:', this.display);
+        console.log('History element:', this.historyDisplay);
+        
+        if (!this.display || !this.historyDisplay) {
+            console.error('Calculator DOM elements not found');
+            return;
+        }
+        
         // Initialize display
         this.updateDisplay();
         
@@ -79,13 +101,18 @@ class ProfessionalCalculator {
         this.addTouchFeedback();
         
         // Load saved theme
-        this.loadTheme();
+        this.loadThemeSettings();
         
         // Security: Prevent right-click context menu
         document.addEventListener('contextmenu', (e) => e.preventDefault());
         
         // Security: Prevent text selection
         document.addEventListener('selectstart', (e) => e.preventDefault());
+    }
+    
+    loadThemeSettings() {
+        const savedTheme = localStorage.getItem('calculator-theme') || 'dark';
+        document.body.setAttribute('data-theme', savedTheme);
     }
     
     // Display Management
@@ -505,16 +532,15 @@ function toggleTheme() {
     }, 300);
 }
 
-function loadTheme() {
-    const savedTheme = localStorage.getItem('calculator-theme') || 'dark';
-    document.body.setAttribute('data-theme', savedTheme);
-}
-
 // Initialize Calculator
 let calculator;
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, initializing calculator');
     calculator = new ProfessionalCalculator();
+    
+    // Make calculator globally available for onclick handlers
+    window.calculator = calculator;
     
     // Security: Add CSP meta tag dynamically if not present
     if (!document.querySelector('meta[http-equiv="Content-Security-Policy"]')) {
