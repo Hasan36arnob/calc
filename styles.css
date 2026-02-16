@@ -1,22 +1,97 @@
-/* CSS Variables for Theme Management */
+/* CSS Variables for Premium Theme Management */
 :root {
-    --bg-color: #1a1a1a;
-    --card-bg: #2d2d2d;
-    --display-bg: #000;
+    /* Luxury Dark Theme */
+    --bg-color: #0f0f13;
+    --card-bg: #1a1a20;
+    --display-bg: #000000;
     --text-color: #ffffff;
-    --key-bg: #3d3d3d;
-    --key-hover: #4d4d4d;
-    --key-active: #5d5d5d;
-    --number-key-bg: #3d3d3d;
-    --operator-key-bg: #ff9500;
-    --operator-key-hover: #ffad33;
-    --equals-key-bg: #ff9500;
-    --function-key-bg: #5a5a5a;
-    --function-key-hover: #6a6a6a;
-    --border-radius: 16px;
-    --key-border-radius: 12px;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --key-bg: #2a2a35;
+    --key-hover: #3a3a45;
+    --key-active: #4a4a55;
+    --number-key-bg: #2a2a35;
+    --operator-key-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    --operator-key-hover: linear-gradient(135deg, #ff8a50, #ff6b6b);
+    --equals-key-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+    --equals-key-hover: linear-gradient(135deg, #50e3c2, #2ecc71);
+    --function-key-bg: #3a3a45;
+    --function-key-hover: #4a4a55;
+    --premium-key-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --premium-key-hover: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+    --border-radius: 20px;
+    --key-border-radius: 16px;
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Premium Light Theme */
+.light-theme {
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --display-bg: #1a1a20;
+    --text-color: #1a1a20;
+    --key-bg: #f0f0f0;
+    --key-hover: #e0e0e0;
+    --key-active: #d0d0d0;
+    --number-key-bg: #f0f0f0;
+    --operator-key-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    --operator-key-hover: linear-gradient(135deg, #ff8a50, #ff6b6b);
+    --equals-key-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+    --equals-key-hover: linear-gradient(135deg, #50e3c2, #2ecc71);
+    --function-key-bg: #e8e8e8;
+    --function-key-hover: #d8d8d8;
+    --premium-key-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --premium-key-hover: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(0, 0, 0, 0.05);
+    --glass-bg: rgba(0, 0, 0, 0.05);
+    --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+/* Ultra Premium Gold Theme */
+.gold-theme {
+    --bg-color: #0a0a0a;
+    --card-bg: #121218;
+    --display-bg: #000000;
+    --text-color: #ffffff;
+    --key-bg: #1a1a22;
+    --key-hover: #252530;
+    --key-active: #303040;
+    --number-key-bg: #1a1a22;
+    --operator-key-bg: linear-gradient(135deg, #ffd700, #ff8c00);
+    --operator-key-hover: linear-gradient(135deg, #ffed4e, #ffd700);
+    --equals-key-bg: linear-gradient(135deg, #b8860b, #ffd700);
+    --equals-key-hover: linear-gradient(135deg, #ffd700, #ffed4e);
+    --function-key-bg: #20202a;
+    --function-key-hover: #2a2a35;
+    --premium-key-bg: linear-gradient(135deg, #daa520 0%, #ffd700 100%);
+    --premium-key-hover: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 215, 0, 0.3);
+    --glass-bg: rgba(255, 215, 0, 0.05);
+    --glass-border: rgba(255, 215, 0, 0.3);
+}
+
+/* Cyberpunk Neon Theme */
+.cyberpunk-theme {
+    --bg-color: #050505;
+    --card-bg: #0a0a0a;
+    --display-bg: #000000;
+    --text-color: #ffffff;
+    --key-bg: #151515;
+    --key-hover: #202020;
+    --key-active: #2a2a2a;
+    --number-key-bg: #151515;
+    --operator-key-bg: linear-gradient(135deg, #00f5ff, #ff00ff);
+    --operator-key-hover: linear-gradient(135deg, #ff00ff, #00f5ff);
+    --equals-key-bg: linear-gradient(135deg, #00ff88, #00f5ff);
+    --equals-key-hover: linear-gradient(135deg, #00f5ff, #00ff88);
+    --function-key-bg: #1a1a1a;
+    --function-key-hover: #252525;
+    --premium-key-bg: linear-gradient(135deg, #ff0055 0%, #00f5ff 100%);
+    --premium-key-hover: linear-gradient(135deg, #00f5ff 0%, #ff0055 100%);
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(0, 245, 255, 0.2);
+    --glass-bg: rgba(0, 245, 255, 0.05);
+    --glass-border: rgba(0, 245, 255, 0.3);
 }
 
 /* Light Theme */
@@ -356,6 +431,12 @@ body.transitioning * {
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
     position: relative;
     overflow: hidden;
+    animation: premiumGlow 3s ease-in-out infinite;
+}
+
+@keyframes premiumGlow {
+    0%, 100% { box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); }
+    50% { box-shadow: 0 4px 25px rgba(102, 126, 234, 0.8); }
 }
 
 .premium-key::before {
@@ -377,6 +458,165 @@ body.transitioning * {
 .premium-key:hover {
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    animation-play-state: paused;
+}
+
+/* Luxury Key Animations */
+.key {
+    position: relative;
+    overflow: hidden;
+}
+
+.key::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.key:hover::after {
+    left: 100%;
+}
+
+.key:active {
+    animation: keyPress 0.1s ease;
+}
+
+@keyframes keyPress {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(2px) scale(0.98); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* Display Animations */
+.main-display {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: displayGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes displayGlow {
+    from { box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1); }
+    to { box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.2); }
+}
+
+/* Calculator Container Effects */
+.calculator {
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.calculator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Floating Animation for Calculator */
+.calculator {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Premium Modal Styling */
+.modal {
+    border: 1px solid var(--glass-border);
+    background: linear-gradient(145deg, var(--card-bg), var(--key-bg));
+}
+
+.modal-header {
+    position: relative;
+}
+
+.modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--premium-key-bg), transparent);
+}
+
+/* Enhanced Button Effects */
+.constant-btn, .unit-btn, .finance-btn, .stat-btn {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+}
+
+.constant-btn::before, .unit-btn::before, .finance-btn::before, .stat-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.constant-btn:hover::before, .unit-btn:hover::before, .finance-btn:hover::before, .stat-btn:hover::before {
+    left: 100%;
+}
+
+/* Notification Styling */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    z-index: 1001;
+    opacity: 0;
+    animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes slideUp {
+    to { opacity: 0; transform: translate(-50%, -20px); }
+}
+
+/* Theme Switcher Enhancement */
+.theme-toggle {
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle::after {
+    content: '💎';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 8px;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.theme-toggle:hover::after {
+    opacity: 1;
+    top: 0;
+    right: 0;
 }
 
 /* Modal Styles for Premium Features */

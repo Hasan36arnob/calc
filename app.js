@@ -296,6 +296,10 @@ class ProfessionalCalculator {
             return;
         }
         
+        // Haptic and Sound Feedback
+        Haptic.light();
+        Sound.click();
+        
         this.updateDisplay();
     }
     
@@ -306,6 +310,11 @@ class ProfessionalCalculator {
         } else if (this.state.currentInput.indexOf('.') === -1) {
             this.state.currentInput += '.';
         }
+        
+        // Haptic and Sound Feedback
+        Haptic.light();
+        Sound.click();
+        
         this.updateDisplay();
     }
     
@@ -337,6 +346,11 @@ class ProfessionalCalculator {
         
         this.state.waitingForOperand = true;
         this.state.operator = nextOperator;
+        
+        // Haptic and Sound Feedback for Operators
+        Haptic.medium();
+        Sound.click();
+        
         this.updateDisplay();
     }
     
@@ -642,9 +656,12 @@ function toggleTheme() {
             newTheme = 'light';
             break;
         case 'light':
-            newTheme = 'high-contrast';
+            newTheme = 'gold';
             break;
-        case 'high-contrast':
+        case 'gold':
+            newTheme = 'cyberpunk';
+            break;
+        case 'cyberpunk':
             newTheme = 'dark';
             break;
         default:
@@ -658,10 +675,131 @@ function toggleTheme() {
     setTimeout(() => {
         body.classList.remove('transitioning');
     }, 300);
+    
+    // Haptic feedback for theme change
+    Haptic.heavy();
+    Sound.success();
+}
+
+function setTheme(theme) {
+    const body = document.body;
+    
+    // Add transition class to prevent flickering
+    body.classList.add('transitioning');
+    
+    body.setAttribute('data-theme', theme);
+    localStorage.setItem('calculator-theme', theme);
+    
+    // Remove transition class after transition completes
+    setTimeout(() => {
+        body.classList.remove('transitioning');
+    }, 300);
+    
+    // Show notification
+    showNotification(`Theme changed to ${theme.toUpperCase()}`);
+    
+    // Haptic feedback
+    Haptic.heavy();
+    Sound.success();
 }
 
 // Premium Features Functions
 let premiumMode = false;
+let hapticEnabled = true;
+let soundEnabled = true;
+
+// Haptic Feedback System
+const Haptic = {
+    light: () => {
+        if (hapticEnabled && 'vibrate' in navigator) {
+            navigator.vibrate(10);
+        }
+    },
+    
+    medium: () => {
+        if (hapticEnabled && 'vibrate' in navigator) {
+            navigator.vibrate(30);
+        }
+    },
+    
+    heavy: () => {
+        if (hapticEnabled && 'vibrate' in navigator) {
+            navigator.vibrate(50);
+        }
+    }
+};
+
+// Sound Effects System
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+
+const Sound = {
+    init: () => {
+        if (soundEnabled && !audioCtx) {
+            audioCtx = new AudioContext();
+        }
+    },
+    
+    click: () => {
+        if (!soundEnabled || !audioCtx) return;
+        
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.1);
+        
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.1);
+    },
+    
+    success: () => {
+        if (!soundEnabled || !audioCtx) return;
+        
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(500, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.2);
+        
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.2);
+    },
+    
+    error: () => {
+        if (!soundEnabled || !audioCtx) return;
+        
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(200, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.3);
+        
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.3);
+    }
+};
 
 function togglePremiumMode() {
     premiumMode = !premiumMode;
@@ -672,10 +810,13 @@ function togglePremiumMode() {
         premiumRow.style.display = 'flex';
         historyRow.style.display = 'flex';
         showNotification('💎 Premium Mode Activated!');
+        Haptic.heavy();
+        Sound.success();
     } else {
         premiumRow.style.display = 'none';
         historyRow.style.display = 'none';
         showNotification('Premium Mode Deactivated');
+        Haptic.light();
     }
 }
 

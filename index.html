@@ -38,6 +38,7 @@
                     <button class="key function-key" id="memory-plus" onclick="calculator.memoryPlus()">M+</button>
                     <button class="key function-key" id="memory-minus" onclick="calculator.memoryMinus()">M-</button>
                     <button class="key function-key" id="memory-store" onclick="calculator.memoryStore()">MS</button>
+                    <button class="key function-key theme-toggle" onclick="toggleTheme()">🌓</button>
                 </div>
 
             <!-- Row 3: Scientific Functions -->
@@ -110,6 +111,14 @@
                     <button class="key function-key" onclick="clearHistory()">Clear Hist</button>
                     <button class="key function-key" onclick="copyResult()">Copy</button>
                     <button class="key function-key" onclick="pasteResult()">Paste</button>
+                </div>
+
+                <!-- Theme Selection Row -->
+                <div class="key-row theme-row" id="theme-row" style="display: none;">
+                    <button class="key function-key" onclick="setTheme('dark')">Dark</button>
+                    <button class="key function-key" onclick="setTheme('light')">Light</button>
+                    <button class="key function-key" onclick="setTheme('gold')">Gold</button>
+                    <button class="key function-key" onclick="setTheme('cyberpunk')">Cyberpunk</button>
                 </div>
             </div>
         </div>
