@@ -1,7 +1,7 @@
 {
   "appId": "com.professional.calculator",
   "appName": "Professional Calculator",
-  "webDir": ".",
+  "webDir": "www",
   "bundledWebRuntime": false,
   "plugins": {
     "SplashScreen": {

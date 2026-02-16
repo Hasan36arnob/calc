@@ -63,6 +63,14 @@ jobs:
         
     - name: Setup Capacitor Android
       run: |
+        # Create www directory and copy web files
+        mkdir -p www
+        cp index.html www/
+        cp styles.css www/
+        cp app.js www/
+        cp manifest.json www/
+        cp -r icons www/
+        
         if [ ! -d "android" ]; then
           npx cap add android
         fi
@@ -150,6 +158,14 @@ jobs:
         
     - name: Setup Capacitor Android
       run: |
+        # Create www directory and copy web files
+        mkdir -p www
+        cp index.html www/
+        cp styles.css www/
+        cp app.js www/
+        cp manifest.json www/
+        cp -r icons www/
+        
         if [ ! -d "android" ]; then
           npx cap add android
         fi
